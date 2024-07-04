@@ -1,14 +1,14 @@
-// Copyright 1998-2019 Epic Games, Inc. All Rights Reserved.
+// Fill out your copyright notice in the Description page of Project Settings.
 
 using UnrealBuildTool;
 
-public class ShaderMacro : ModuleRules
+public class CatsParadise : ModuleRules
 {
-	public ShaderMacro(ReadOnlyTargetRules Target) : base(Target)
+	public CatsParadise(ReadOnlyTargetRules Target) : base(Target)
 	{
 		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 	
-		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore" });
+		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "RenderCore", "Water", "Niagara", });
 
 		PrivateDependencyModuleNames.AddRange(new string[] {  });
 
