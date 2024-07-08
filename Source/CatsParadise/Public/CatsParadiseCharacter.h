@@ -39,6 +39,22 @@ class ACatsParadiseCharacter : public ACatsParadiseBaseCharacter
 
 	/** MappingContext */
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category=Input, meta=(AllowPrivateAccess = "true"))
+	UInputMappingContext* BoatMappingContext;
+
+	/** Move Boat Input Action */
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category=Input, meta=(AllowPrivateAccess = "true"))
+	UInputAction* MoveBoatAction;
+
+	/** Steer Boat Input Action */
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category=Input, meta=(AllowPrivateAccess = "true"))
+	UInputAction* SteerBoatAction;
+
+	/** Steer Boat Input Action */
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category=Input, meta=(AllowPrivateAccess = "true"))
+	UInputAction* LeaveBoatAction;
+
+	/** MappingContext */
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category=Input, meta=(AllowPrivateAccess = "true"))
 	UInputMappingContext* DefaultMappingContext;
 
 	/** Look Input Action */
@@ -93,6 +109,18 @@ protected:
 	/** Called for movement input */
 	UFUNCTION(BlueprintNativeEvent, Category="Character")
 	void Move(const FInputActionValue& Value);
+
+	/** Called for movement boat input */
+	UFUNCTION(BlueprintNativeEvent, Category="Character")
+	void MoveBoat(const FInputActionValue& Value);
+
+	/** Called for movement steer input */
+	UFUNCTION(BlueprintNativeEvent, Category="Character")
+	void SteerBoat(const FInputActionValue& Value);
+
+	/** Called for interacting input */
+	UFUNCTION(BlueprintNativeEvent, Category="Character")
+	void LeaveBoat();
 	
 	// APawn interface
 	virtual void SetupPlayerInputComponent(UInputComponent* InputComponent) override;

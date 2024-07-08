@@ -11,7 +11,15 @@
 UENUM(BlueprintType)
 enum ECharacterState
 {
-	Default = 0 UMETA(DisplayName = "Default")
+	Default = 0 UMETA(DisplayName = "Default"),
+	Vehicle = 0 UMETA(DisplayName = "Vehicle")
+};
+
+UENUM(BlueprintType)
+enum ECharacterEnvironment
+{
+	DefaultEnvironment = 0 UMETA(DisplayName = "Default Environment"),
+	WaterEnvironment = 1 UMETA(DisplayName = "Water Environment")
 };
 
 class USkeletalMeshComponent;
@@ -64,8 +72,14 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category="Character")
 	TEnumAsByte<ECharacterState> CharacterState = ECharacterState::Default;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category="Character")
+	TEnumAsByte<ECharacterEnvironment> CharacterEnvironment = ECharacterEnvironment::DefaultEnvironment;
+
 	UFUNCTION(BlueprintCallable, Category="Character")
 	void ChangeCharacterState(ECharacterState NewCharacterState);
+
+	UFUNCTION(BlueprintCallable, Category="Character")
+	void ChangeCharacterEnvironment(ECharacterEnvironment NewCharacterEnvironment);
 
 	UFUNCTION(BlueprintCallable, Category="Character")
 	void TryUseItem();
