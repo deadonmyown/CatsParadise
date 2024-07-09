@@ -26,7 +26,7 @@ public:
     const int32 ButterflyCount = BUTTERFLY_COUNT;
 
     // per cascade params    
-    double Amplitude[NUM_CASCADES] = { 168000.f, 64000.f, 4000.f, 240.f };
+    double Amplitude[NUM_CASCADES] = { 84000.f, 32000.f, 2000.f, 120.f };
     double WindDirectionality[NUM_CASCADES] = { 1.f, 1.f, 1.f, 1.f };
     double Choppiness[NUM_CASCADES] = { 1.5, 1.5, 1.5, 1.5 };
     double PatchLength[NUM_CASCADES] = { 10.f, 28.f, 432.f, 2000.f };

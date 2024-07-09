@@ -96,6 +96,9 @@ public:
 	UFUNCTION(BlueprintCallable, Category="InteractionSystem")
 	bool StartInteraction();
 
+	UFUNCTION(BlueprintCallable, Category="InteractionSystem")
+	bool StartInteractionByActor(AActor* Actor);
+
 	/** Finishes interaction.
 	 * Call it if FinishManually == false.
 	 */
@@ -108,6 +111,9 @@ public:
 	/** Stops interaction.*/
 	UFUNCTION(BlueprintCallable, Category="InteractionSystem")
 	bool StopInteraction();
+
+	UFUNCTION(BlueprintCallable, Category="InteractionSystem")
+	bool StopInteractionByActor(AActor* Actor);
 
 	UFUNCTION(BlueprintCallable, Category="InteractionSystem")
 	bool HasInteractionInterface(AActor* Actor);

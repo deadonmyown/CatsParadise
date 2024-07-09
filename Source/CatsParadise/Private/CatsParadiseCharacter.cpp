@@ -61,6 +61,11 @@ void ACatsParadiseCharacter::SetupPlayerInputComponent(UInputComponent* PlayerIn
 		
 		EnhancedInputComponent->BindAction(UseAction, ETriggerEvent::Triggered, this, &ACatsParadiseCharacter::TryUseItem);
 		EnhancedInputComponent->BindAction(DropAction, ETriggerEvent::Triggered, this, &ACatsParadiseCharacter::DropItem);
+
+		//Vehicle
+		EnhancedInputComponent->BindAction(MoveBoatAction, ETriggerEvent::Triggered, this, &ACatsParadiseCharacter::MoveBoat);
+		EnhancedInputComponent->BindAction(SteerBoatAction, ETriggerEvent::Triggered, this, &ACatsParadiseCharacter::SteerBoat);
+		EnhancedInputComponent->BindAction(LeaveBoatAction, ETriggerEvent::Triggered, this, &ACatsParadiseCharacter::LeaveBoat);
 	}
 	else
 	{
@@ -112,4 +117,16 @@ void ACatsParadiseCharacter::Move_Implementation(const FInputActionValue& Value)
 		AddMovementInput(GetActorForwardVector(), MovementVector.Y);
 		AddMovementInput(GetActorRightVector(), MovementVector.X);
 	}
+}
+
+void ACatsParadiseCharacter::MoveBoat_Implementation(const FInputActionValue& Value)
+{
+}
+
+void ACatsParadiseCharacter::SteerBoat_Implementation(const FInputActionValue& Value)
+{
+}
+
+void ACatsParadiseCharacter::LeaveBoat_Implementation()
+{
 }
