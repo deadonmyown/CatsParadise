@@ -31,6 +31,12 @@ void ACatsParadiseBaseCharacter::ChangeCharacterState(ECharacterState NewCharact
 	CharacterState = NewCharacterState;
 }
 
+void ACatsParadiseBaseCharacter::ChangeCharacterEnvironment(ECharacterEnvironment NewCharacterEnvironment)
+{
+	CharacterEnvironment = NewCharacterEnvironment;
+}
+
+
 void ACatsParadiseBaseCharacter::SetCanTakeItem(bool bNewCanTake)
 {
 	bCanTakeItem = bNewCanTake;

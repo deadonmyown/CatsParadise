@@ -81,7 +81,12 @@ bool UInteractionComponent::AddToInteractionQueue(const AActor* Actor, AActor* I
 		return false;
 	}
 
-	return InteractionQueueComponent->Add(InteractiveActor, Data);
+	bool bIsSuccess = InteractionQueueComponent->Add(InteractiveActor, Data);
+	if(bIsSuccess && bInteractOnOverlap)
+	{
+		bIsSuccess = InteractionQueueComponent->StartInteractionByActor(GetOwner());
+	}
+	return bIsSuccess;
 }
 
 bool UInteractionComponent::RemoveFromInteractionQueue(const AActor* Actor, const AActor* InteractiveActor)
@@ -98,6 +103,11 @@ bool UInteractionComponent::RemoveFromInteractionQueue(const AActor* Actor, cons
 		return false;
 	}
 
+	if(bInteractOnOverlap)
+	{
+		InteractionQueueComponent->StopInteractionByActor(GetOwner());
+	}
+	
 	return InteractionQueueComponent->Remove(InteractiveActor);
 }
 

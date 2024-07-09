@@ -94,6 +94,37 @@ bool UInteractionQueueComponent::StartInteraction()
 	return bFinishManually ? true : FinishInteractionByActor(GetFirstActor());
 }
 
+bool UInteractionQueueComponent::StartInteractionByActor(AActor* Actor)
+{
+	if(IsQueueEmpty())
+	{
+		UE_LOG(LogTemp, Display, TEXT("queue is empty"));
+		return false;
+	}
+	
+	if(!QueueHasActor(Actor) || !HasInteractionInterface(Actor))
+	{
+		UE_LOG(LogTemp, Display, TEXT("no interface or is not in queue"));
+		return false;
+	}
+
+	FInteractionData InteractionData;
+	GetInteractionData(Actor, InteractionData);
+
+	if(InteractionData.bRequireLineOfSight && Actor != ActorInSight)
+	{
+		UE_LOG(LogTemp, Display, TEXT("line of sight"));
+		return false;
+	}
+
+	//TODO: If add timer -> add timer logic
+
+	OnInteractionStarted.Broadcast(Actor);
+	IInteractionInterface::Execute_StartInteraction(Actor, GetOwner());
+
+	return bFinishManually ? true : FinishInteractionByActor(Actor);
+}
+
 bool UInteractionQueueComponent::FinishInteractionByActor(AActor* Actor)
 {
 	bool bResult = false;
@@ -152,6 +183,21 @@ bool UInteractionQueueComponent::StopInteraction()
 	FInteractionData InteractionData;
 	GetFirstInteractionData(InteractionData);
 	AActor* Actor = GetFirstActor();
+
+	if(!IsValid(Actor) || !HasInteractionInterface(Actor))
+	{
+		return false;
+	}
+
+	OnInteractionStopped.Broadcast(Actor);
+	IInteractionInterface::Execute_StopInteraction(Actor, GetOwner());
+	return true;
+}
+
+bool UInteractionQueueComponent::StopInteractionByActor(AActor* Actor)
+{
+	FInteractionData InteractionData;
+	GetInteractionData(Actor, InteractionData);
 
 	if(!IsValid(Actor) || !HasInteractionInterface(Actor))
 	{
