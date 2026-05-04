@@ -8,7 +8,7 @@ public class CatsParadiseTarget : TargetRules
 	public CatsParadiseTarget(TargetInfo Target) : base(Target)
 	{
 		Type = TargetType.Game;
-		DefaultBuildSettings = BuildSettingsVersion.V4;
+		DefaultBuildSettings = BuildSettingsVersion.Latest;
 
 		ExtraModuleNames.AddRange( new string[] { "CatsParadise" } );
 	}
